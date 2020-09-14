@@ -1,0 +1,1 @@
+//possible implementation of the college_course class with the linked list of students.

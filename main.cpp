@@ -33,7 +33,7 @@ int main() {
             stof(items[5])
         );
 
-        course.add_node(s);
+        course.add_student(s);
     }
 
     // List students

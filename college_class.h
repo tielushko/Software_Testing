@@ -13,14 +13,8 @@ struct node
 class college_class
 {
     private:
-        //node *head, *tail;
         vector<student> students = vector<student>();
     public:
-        college_class() 
-        {
-            //head = NULL;
-            //tail = NULL;
-        }
 
         void add_student(student s)
         {

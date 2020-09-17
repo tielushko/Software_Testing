@@ -4,25 +4,6 @@
 #include <iostream>
 using namespace std; 
 
-// void college_class::add_student(student s) {
-    
-//     node* tmp = (node *)malloc(sizeof(node));
-//     tmp->s = s;
-//     tmp->next = NULL;
-
-//     // Inserting first node
-//     if(head == NULL)
-//     {
-//         head = tmp;
-//         tail = tmp;
-//     }
-//     else
-//     {
-//         tail->next = tmp;
-//         tail = tail->next;
-//     }
-// }
-
 // Display student details to console 
 void college_class::display()  {
     for(student s: students)

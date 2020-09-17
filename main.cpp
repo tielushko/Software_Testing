@@ -1,14 +1,53 @@
 #include <iostream>
-
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include "college_class.h"
 using namespace std;
 
 int main() {
+    string item, line;
+
+    // Open students file
+    ifstream student_file("students.csv");
+
+    college_class course;
+
+    // Read in csv to create student
+    // Possible introduction of bug, assumes input is correctly formatted and translates from str
+    while(getline(student_file, line))
+    {
+        istringstream temp(line);
+        vector<string> items;
+        while(getline(temp, item, ','))
+        {
+            items.push_back(item);
+        }
+
+        student s = student(
+            items[0],
+            items[1],
+            items[2],
+            stof(items[3]),
+            stof(items[4]),
+            stof(items[5])
+        );
+
+        course.add_node(s);
+    }
+
+    // List students
+    course.display();
+
+    // Close input file 
+    student_file.close();
+    
     //initialize operation selector, class linked-list, student object, etc.
     int selection;
-    
 
     //welcome message to the user
-        cout << "Welcome to CEN 4072: Software Testing Class Roll System!" << endl;
+    cout << "Welcome to CEN 4072: Software Testing Class Roll System!" << endl;
+
     
     while (true) {
         
@@ -61,3 +100,4 @@ int main() {
     }
     return 0;
 }
+

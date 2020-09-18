@@ -5,8 +5,19 @@
 #include "college_class.h"
 using namespace std;
 
+namespace h {
+    void print_menu() {
+                cout << endl << "Select the operation you would like to perform" << endl;
+                cout << "1. Add new Student to the Class." << endl << "2. Remove the Student from the class." << endl 
+                << "3. View Student's record (Search for the Student)." << endl << "4. Update Student's record." << endl << "5. Exit application" << endl;
+            
+    }
+}
+
 int main() {
     string item, line;
+    student blank = student("","","",0,0,0); //i made this for easy comparison in my search functions.
+    student stud = student("","","",0,0,0); //i made this for return of the student_search
 
     // Open students file
     ifstream student_file("students.csv");
@@ -50,14 +61,24 @@ int main() {
 
     
     while (true) {
-        
+
+        int selection;
         //ask the user to select the function to run
-        cout << "Select the operation you would like to perform" << endl;
+        h::print_menu();
+        /*cout << "Select the operation you would like to perform" << endl;
         cout << "1. Add new Student to the Class." << endl << "2. Remove the Student from the class." << endl 
         << "3. View Student's record (Search for the Student)." << endl << "4. Update Student's record." << endl << "5. Exit application" << endl;
+        */
+        while (!(cin >> selection)) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << endl << "Bad data entered. Try again." << endl;
+            h::print_menu();
+        }
+        //cin.ignore();
+        //getline(cin, selection);
+        //cin >> selection;
         
-        cin >> selection;
-
         //switch statement to run the necessary functions on the student class.
         switch (selection) {
 
@@ -74,9 +95,11 @@ int main() {
             //view the student's record
             case 3:
                 // search by name
-
+                stud = course.search_student();
+                
+                if (stud.get_name() != blank.get_name()) 
+                    course.display_student(stud);
                 // search by UID
-
                 // search by email
                 break;
 

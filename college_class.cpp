@@ -57,8 +57,7 @@ student college_class::search_option_name() {
         if (s.get_name() == student_name) {
             cout << endl << "Success! Record Found. Here is the student's information! " << endl;
             return s;
-        } //else {
-        //}
+        }
     }
     cout << endl << "Unable to find " + student_name << ". Please try again!" << endl << endl;
     //since the student was not found, I am returning a blank record of a student. Please be careful and create check in the future,
@@ -78,8 +77,7 @@ student college_class::search_option_ID() {
         if (s.get_usfid() == student_ID) {
             cout << endl << "Success! Record Found. Here is the student's information! " << endl;
             return s;
-        } //else {
-        //}
+        } 
     }
     cout << endl << "Unable to find " + student_ID << ". Please try again!" << endl << endl;
     //since the student was not found, I am returning a blank record of a student. Please be careful and create check in the future,

@@ -31,4 +31,12 @@ class college_class
         student search_option_ID();
         student search_option_email();
 };
-
+   /*
+    void print_menu() {
+        cout << endl << "Bad data entered. Try again." << endl << endl;
+                cout << "Select the operation you would like to perform" << endl;
+                cout << "1. Add new Student to the Class." << endl << "2. Remove the Student from the class." << endl 
+                << "3. View Student's record (Search for the Student)." << endl << "4. Update Student's record." << endl << "5. Exit application" << endl;
+            
+    }
+*/

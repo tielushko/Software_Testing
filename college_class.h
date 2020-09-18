@@ -20,6 +20,15 @@ class college_class
         {
             students.push_back(s);
         };
+
+        //display functions
         void display();
+        void display_student(student s);
+
+        //search functions
+        student search_student();
+        student search_option_name();
+        student search_option_ID();
+        student search_option_email();
 };
 

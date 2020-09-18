@@ -7,6 +7,8 @@ using namespace std;
 
 int main() {
     string item, line;
+    student blank = student("","","",0,0,0); //i made this for easy comparison in my search functions.
+    student stud = student("","","",0,0,0); //i made this for return of the student_search
 
     // Open students file
     ifstream student_file("students.csv");
@@ -74,9 +76,11 @@ int main() {
             //view the student's record
             case 3:
                 // search by name
-
+                stud = course.search_student();
+                
+                if (stud.get_name() != blank.get_name()) 
+                    course.display_student(stud);
                 // search by UID
-
                 // search by email
                 break;
 

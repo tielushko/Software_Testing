@@ -21,5 +21,8 @@ class college_class
             students.push_back(s);
         };
         void display();
+		void remove_student(string full_name);
+	
+	
 };
 

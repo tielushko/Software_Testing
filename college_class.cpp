@@ -13,3 +13,25 @@ void college_class::display()  {
         << " Essay Grade: " << s.get_essay_grade() << " Project Grade: " << s.get_term_proj_grade() << endl;
     }
 }
+
+void college_class::remove_student(string full_name)
+{
+
+	int index = 0;
+	for (student s : students)
+	{
+		if (full_name == s.get_name())
+		{
+			//delete from vector
+			cout << "Student Succesfully Removed";
+			students.erase(students.begin() + index);
+			break;
+		
+		}
+
+		index++;
+
+	}
+
+
+}

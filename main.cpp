@@ -1,6 +1,4 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <vector>
 #include "college_class.h"
 using namespace std;
@@ -15,44 +13,11 @@ namespace h {
 }
 
 int main() {
-    string item, line;
     student blank = student("","","",0,0,0); //i made this for easy comparison in my search functions.
     student stud = student("","","",0,0,0); //i made this for return of the student_search
 
-    // Open students file
-    ifstream student_file("students.csv");
-
     college_class course;
 
-    // Read in csv to create student
-    // Possible introduction of bug, assumes input is correctly formatted and translates from str
-    while(getline(student_file, line))
-    {
-        istringstream temp(line);
-        vector<string> items;
-        while(getline(temp, item, ','))
-        {
-            items.push_back(item);
-        }
-
-        student s = student(
-            items[0],
-            items[1],
-            items[2],
-            stof(items[3]),
-            stof(items[4]),
-            stof(items[5])
-        );
-
-        course.add_student(s);
-    }
-
-    // List students
-    course.display();
-
-    // Close input file 
-    student_file.close();
-    
     //initialize operation selector, class linked-list, student object, etc.
     int selection;
 

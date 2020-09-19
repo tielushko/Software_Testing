@@ -33,5 +33,5 @@ public:
     student search_option_name();
     student search_option_ID();
     student search_option_email();
-    void update_record();
+    
 };

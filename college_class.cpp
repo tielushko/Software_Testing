@@ -268,6 +268,6 @@ void college_class::update_record()
             out << s.get_name() << "," << s.get_usfid() << "," << s.get_email() << "," << s.get_presentation_grade() << "," << s.get_essay_grade() << "," << s.get_term_proj_grade() << endl;
         }
         out.close();
-       
+   
     }
 }

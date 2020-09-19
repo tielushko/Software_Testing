@@ -2,7 +2,15 @@
 #include "college_class.h"
 #include <vector>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 using namespace std;
+
+college_class::college_class()
+{
+    fill_students_vector_from_csv();
+    display();
+}
 
 // Display student details to console
 void college_class::display()
@@ -217,7 +225,47 @@ void college_class::add_student(student s)
     students.push_back(s);
 }
 
+void college_class::save_students_vector_to_csv()
+{
+    cout << "Saving to csv..." << endl
+         << endl;
+}
+
 void college_class::add_new_student()
 {
     students.push_back(get_new_student_from_user());
+    save_students_vector_to_csv();
+}
+
+void college_class::fill_students_vector_from_csv()
+{
+    string item, line;
+
+    // Open students file
+    ifstream student_file("students.csv");
+
+    // Read in csv to create student
+    // Possible introduction of bug, assumes input is correctly formatted and translates from str
+    while (getline(student_file, line))
+    {
+        istringstream temp(line);
+        vector<string> items;
+        while (getline(temp, item, ','))
+        {
+            items.push_back(item);
+        }
+
+        student s = student(
+            items[0],
+            items[1],
+            items[2],
+            stof(items[3]),
+            stof(items[4]),
+            stof(items[5]));
+
+        add_student(s);
+    }
+
+    // Close input file
+    student_file.close();
 }

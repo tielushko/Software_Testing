@@ -16,10 +16,10 @@ private:
     vector<student> students = vector<student>();
     student get_new_student_from_user();
     void save_students_vector_to_csv();
+    void fill_students_vector_from_csv();
 
 public:
     college_class();
-    void fill_students_vector_from_csv();
 
     void add_new_student();
     void add_student(student s);

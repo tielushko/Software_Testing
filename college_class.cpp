@@ -227,8 +227,15 @@ void college_class::add_student(student s)
 
 void college_class::save_students_vector_to_csv()
 {
-    cout << "Saving to csv..." << endl
-         << endl;
+    ofstream out;
+    out.open("students.csv");
+
+    for (student s : students)
+    {
+        out << s.get_name() << "," << s.get_usfid() << "," << s.get_email() << "," << s.get_presentation_grade() << "," << s.get_essay_grade() << "," << s.get_term_proj_grade() << endl;
+    }
+
+    out.close();
 }
 
 void college_class::add_new_student()

@@ -103,6 +103,7 @@ int main() {
                 // perform search of the student.
 
                 //run update of the field for the student.
+                course.update_record();
                 break;
             
             //exit the application

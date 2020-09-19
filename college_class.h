@@ -4,34 +4,33 @@
 #include "student.h"
 using namespace std;
 
-struct node 
+struct node
 {
-    student s = student("","","",0.0,0.0,0.0);
-    node* next = NULL;
+    student s = student("", "", "", 0.0, 0.0, 0.0);
+    node *next = NULL;
 };
 
 class college_class
 {
-    private:
-        vector<student> students = vector<student>();
-    public:
+private:
+    vector<student> students = vector<student>();
+    student get_new_student_from_user();
 
-        void add_student(student s)
-        {
-            students.push_back(s);
-        };
+public:
+    void add_new_student();
+    void add_student(student s);
 
-        //display functions
-        void display();
-        void display_student(student s);
+    //display functions
+    void display();
+    void display_student(student s);
 
-        //search functions
-        student search_student();
-        student search_option_name();
-        student search_option_ID();
-        student search_option_email();
+    //search functions
+    student search_student();
+    student search_option_name();
+    student search_option_ID();
+    student search_option_email();
 };
-   /*
+/*
     void print_menu() {
         cout << endl << "Bad data entered. Try again." << endl << endl;
                 cout << "Select the operation you would like to perform" << endl;

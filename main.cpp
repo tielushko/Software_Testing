@@ -80,7 +80,7 @@ int main() {
 
             //add the student to the class
             case 1:
-                
+                course.add_new_student();
                 break;
 
             //remove the student from the class

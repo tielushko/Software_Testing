@@ -50,7 +50,7 @@ int main() {
 
             //remove the student from the class
             case 2:
-                
+                course.remove_student();
                 break;
 
             //view the student's record

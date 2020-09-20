@@ -22,7 +22,7 @@ public:
     college_class();
 
     void add_new_student();
-    void add_student(student s);
+    void remove_student();
 
     //display functions
     void display();
@@ -33,5 +33,4 @@ public:
     student search_option_name();
     student search_option_ID();
     student search_option_email();
-    
 };

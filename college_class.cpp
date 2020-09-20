@@ -219,12 +219,6 @@ student college_class::get_new_student_from_user()
     return stu;
 }
 
-// Display student details to console
-void college_class::add_student(student s)
-{
-    students.push_back(s);
-}
-
 void college_class::save_students_vector_to_csv()
 {
     ofstream out;
@@ -242,6 +236,24 @@ void college_class::add_new_student()
 {
     students.push_back(get_new_student_from_user());
     save_students_vector_to_csv();
+}
+
+void college_class::remove_student()
+{
+    student stu = search_option_ID();
+
+    if (stu.get_name() == "")
+        return;
+
+    for (int i = 0; i < students.size(); i++)
+        if (students[i].get_usfid() == stu.get_usfid())
+        {
+            students.erase(students.begin() + i);
+            cout << "The student has been successfully removed from the course." << endl
+                 << endl;
+            save_students_vector_to_csv();
+            return;
+        }
 }
 
 void college_class::fill_students_vector_from_csv()
@@ -270,7 +282,7 @@ void college_class::fill_students_vector_from_csv()
             stof(items[4]),
             stof(items[5]));
 
-        add_student(s);
+        students.push_back(s);
     }
 
     // Close input file

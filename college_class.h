@@ -4,34 +4,25 @@
 #include "student.h"
 using namespace std;
 
-struct node
+struct node 
 {
-    student s = student("", "", "", 0.0, 0.0, 0.0);
-    node *next = NULL;
+    student s = student("","","",0.0,0.0,0.0);
+    node* next = NULL;
 };
 
 class college_class
 {
-private:
-    vector<student> students = vector<student>();
-    student get_new_student_from_user();
-    void save_students_vector_to_csv();
-    void fill_students_vector_from_csv();
+    private:
+        vector<student> students = vector<student>();
+    public:
 
-public:
-    college_class();
-
-    void add_new_student();
-    void add_student(student s);
-
-    //display functions
-    void display();
-    void display_student(student s);
-
-    //search functions
-    student search_student();
-    student search_option_name();
-    student search_option_ID();
-    student search_option_email();
-    
+        void add_student(student s)
+        {
+            students.push_back(s);
+        };
+        void display();
+		void remove_student(string full_name);
+	
+	
 };
+

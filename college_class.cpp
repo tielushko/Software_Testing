@@ -62,6 +62,11 @@ student college_class::search_student()
         stud = search_option_email();
         break;
     }
+
+    if (stud.get_name() != "")
+        cout << endl
+             << "Success! Record Found. Here is the student's information! " << endl;
+
     return stud;
 }
 
@@ -70,22 +75,16 @@ student college_class::search_option_name()
 {
     string student_name;
     cout << endl
-         << "Enter the student's name: " << endl;
+         << "Enter the student's name: ";
     cin.ignore();
     getline(cin, student_name);
 
     for (student s : students)
-    {
         if (s.get_name() == student_name)
-        {
-            cout << endl
-                 << "Success! Record Found. Here is the student's information! " << endl;
             return s;
-        }
-    }
+
     cout << endl
-         << "Unable to find " + student_name << ". Please try again!" << endl
-         << endl;
+         << "Unable to find " + student_name << endl;
     //since the student was not found, I am returning a blank record of a student. Please be careful and create check in the future,
     //accounting for the writing into csv file and all.
     return student("", "", "", 0, 0, 0);
@@ -96,22 +95,16 @@ student college_class::search_option_ID()
 {
     string student_ID;
     cout << endl
-         << "Enter the student's USF ID: " << endl;
+         << "Enter the student's USF ID: ";
     cin.ignore();
     getline(cin, student_ID);
 
     for (student s : students)
-    {
         if (s.get_usfid() == student_ID)
-        {
-            cout << endl
-                 << "Success! Record Found. Here is the student's information! " << endl;
             return s;
-        }
-    }
+
     cout << endl
-         << "Unable to find " + student_ID << ". Please try again!" << endl
-         << endl;
+         << "Unable to find " + student_ID << endl;
     //since the student was not found, I am returning a blank record of a student. Please be careful and create check in the future,
     //accounting for the writing into csv file and all.
     return student("", "", "", 0, 0, 0);
@@ -122,22 +115,16 @@ student college_class::search_option_email()
 {
     string student_email;
     cout << endl
-         << "Enter the student's email: " << endl;
+         << "Enter the student's email: ";
     cin.ignore();
     getline(cin, student_email);
 
     for (student s : students)
-    {
         if (s.get_email() == student_email)
-        {
-            cout << endl
-                 << "Success! Record Found. Here is the student's information! " << endl;
             return s;
-        }
-    }
+
     cout << endl
-         << "Unable to find " + student_email << ". Please try again!" << endl
-         << endl;
+         << "Unable to find " + student_email << endl;
     //since the student was not found, I am returning a blank record of a student. Please be careful and create check in the future,
     //accounting for the writing into csv file and all.
     return student("", "", "", 0, 0, 0);
@@ -249,7 +236,8 @@ void college_class::remove_student()
         if (students[i].get_usfid() == stu.get_usfid())
         {
             students.erase(students.begin() + i);
-            cout << "The student has been successfully removed from the course." << endl
+            cout << endl
+                 << "The student has been successfully removed from the course." << endl
                  << endl;
             save_students_vector_to_csv();
             return;

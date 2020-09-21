@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <limits>
 using namespace std;
 
 college_class::college_class()

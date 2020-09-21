@@ -282,6 +282,7 @@ void college_class::fill_students_vector_from_csv()
 void college_class::update_record()
 {
     student stud = search_student();
+    display_student(stud);
     int option;
     float grade;
     string str;

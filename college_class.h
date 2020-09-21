@@ -4,12 +4,6 @@
 #include "student.h"
 using namespace std;
 
-struct node
-{
-    student s = student("", "", "", 0.0, 0.0, 0.0);
-    node *next = NULL;
-};
-
 class college_class
 {
 private:

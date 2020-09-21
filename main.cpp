@@ -6,9 +6,12 @@ using namespace std;
 namespace h {
     void print_menu() {
                 cout << endl << "Select the operation you would like to perform" << endl;
-                cout << "1. Add new Student to the Class." << endl << "2. Remove the Student from the class." << endl 
-                << "3. View Student's record (Search for the Student)." << endl << "4. Update Student's record." << endl << "5. Exit application" << endl;
-            
+                cout << "1. Add new Student to the Class." << endl 
+                << "2. Remove the Student from the class." << endl 
+                << "3. View Student's record (Search for the Student)." << endl 
+                << "4. Update Student's record." << endl 
+                << "5. View Class Roster." << endl 
+                << "6. Exit application" << endl;         
     }
 }
 
@@ -69,9 +72,12 @@ int main() {
 
                 //run update of the field for the student.
                 break;
-            
-            //exit the application
+            //display current roster.
             case 5:
+                course.display();
+                break;
+            //exit the application
+            case 6:
                 cout << endl << endl << "Thank you for using the CEN4072 Class Roll System! Good bye now! Have a wonderful day!" << endl << endl;
                 return 0;
                 break;

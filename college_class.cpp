@@ -9,12 +9,13 @@ using namespace std;
 college_class::college_class()
 {
     fill_students_vector_from_csv();
-    display();
+    //display(); //do we really need this at the beginning of the program?
 }
 
 // Display student details to console
 void college_class::display()
 {
+    cout << endl << "Here is information of the students in your class!" << endl << endl;
     for (student s : students)
     {
         cout << "Name: " << s.get_name() << " USF ID: " << s.get_usfid()

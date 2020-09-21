@@ -277,3 +277,169 @@ void college_class::fill_students_vector_from_csv()
     // Close input file
     student_file.close();
 }
+
+void college_class::update_record()
+{
+    student stud = search_student();
+    int option;
+    float grade;
+    string str;
+
+    if (stud.get_name() != "")
+    {
+
+        ofstream out;
+        out.open("students.csv");
+
+        while (true)
+        {
+            cout << endl
+                 << "Select the number for update option: " << endl
+                 << "1. Presentation Grade" << endl
+                 << "2. Essay Grade." << endl
+                 << "3. Project Grade." << endl
+                 << "4. Email." << endl;
+            cin >> option;
+            if (cin.fail())
+            {
+                cout << "Try again for update option!" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
+            if (option < 1 || option > 4)
+            {
+                cout << "The number for update option is between 1 and 4!" << endl;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        switch (option)
+        {
+        case 1:
+
+            while (true)
+            {
+                cout << "Enter the grade for Presentation:" << endl;
+                cin >> grade;
+                if (cin.fail())
+                {
+                    cout << "That is not a valid number" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            for (student &s : students)
+            {
+                if (s.get_name() == stud.get_name())
+                {
+                    s.set_presentation_grade(grade);
+                    break;
+                }
+            }
+
+            break;
+        case 2:
+
+            while (true)
+            {
+                cout << "Enter the grade for Essay:" << endl;
+                cin >> grade;
+                if (cin.fail())
+                {
+                    cout << "That is not a valid number" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            for (student &s : students)
+            {
+                if (s.get_name() == stud.get_name())
+                {
+                    s.set_essay_grade(grade);
+                    break;
+                }
+            }
+
+            break;
+        case 3:
+
+            while (true)
+            {
+                cout << "Enter the grade for Project:" << endl;
+                cin >> grade;
+                if (cin.fail())
+                {
+                    cout << "That is not a valid number" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            for (student &s : students)
+            {
+                if (s.get_name() == stud.get_name())
+                {
+                    s.set_term_proj_grade(grade);
+                    break;
+                }
+            }
+
+            break;
+        case 4:
+            while (true)
+            {
+                cout << "Enter the new email:" << endl;
+                cin >> str;
+                if (cin.fail())
+                {
+
+                    cout << "That is not a valid string" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            for (student &s : students)
+            {
+                if (s.get_name() == stud.get_name())
+                {
+                    s.set_email(str);
+                    break;
+                }
+            }
+
+            break;
+        }
+        // update the information for student.csv
+        for (student s : students)
+        {
+            out << s.get_name() << "," << s.get_usfid() << "," << s.get_email() << "," << s.get_presentation_grade() << "," << s.get_essay_grade() << "," << s.get_term_proj_grade() << endl;
+        }
+        out.close();
+       
+    }
+}
+

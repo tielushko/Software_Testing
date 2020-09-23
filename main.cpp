@@ -14,7 +14,6 @@ using namespace std;
 ▪ Grade of essay (numerical value from 0 (F) to 4 (A))
 ▪ Grade of the term project (numerical value from 0 (F) to 4 (A)) 
 */
-
 class student {
     private:
         float presentation_grade;
@@ -25,7 +24,7 @@ class student {
         string Name;
         string USFID;
         string Email;
-
+    
     student(string name, string id, string email, float pres_grade, float ess_grade, float proj_grade)
     {
         Name = name;
@@ -99,6 +98,7 @@ class student {
 
 /**** COLLEGE_CLASS CLASS ****************/
 // HEADER 
+ofstream student_files("students.csv");
 class college_class
 {
 private:
@@ -370,13 +370,16 @@ void college_class::fill_students_vector_from_csv()
 {
     string item, line;
 
-    // Open students file
+    // Open students file to read/write
     ifstream student_file("students.csv");
 
-    // Should check if file exists and add if it doesn't
+    if(student_file.good()) 
+    {
+        student_files << "Success (Code 20): File Exists!" << endl; // malloc bug 
+        student_file.clear();
+    }
 
     // Read in csv to create student
-    // Possible introduction of bug, assumes input is correctly formatted and translates from str
     while (getline(student_file, line))
     {
         istringstream temp(line);
@@ -398,6 +401,7 @@ void college_class::fill_students_vector_from_csv()
     }
 
     // Close input file
+    student_file.clear(); 
     student_file.close();
 }
 

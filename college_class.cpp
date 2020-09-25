@@ -158,10 +158,6 @@ student college_class::get_new_student_from_user()
     string studentEmail;
     getline(cin, studentEmail);
 
-    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        Potential to introduce bug by not converting string to float
-       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
-
     float presGrade;
     float essayGrade;
     float projectGrade;
@@ -183,29 +179,10 @@ student college_class::get_new_student_from_user()
         string studentProjectGrade;
         getline(cin, studentProjectGrade);
 
-        try
-        {
-            presGrade = stof(studentPresentationGrade);
-            essayGrade = stof(studentEssayGrade);
-            projectGrade = stof(studentProjectGrade);
-        }
-        catch (exception e)
-        {
-            cout << endl
-                 << "You've entered an invalid value for grades. Enter (0.0 - 100.0)" << endl
-                 << endl;
-            continue;
-        }
-
         break;
     }
 
     student stu = student(studentName, studentId, studentEmail, presGrade, essayGrade, projectGrade);
-
-    cout << endl
-         << "Successfully added student to the class." << endl
-         << endl;
-    return stu;
 }
 
 void college_class::save_students_vector_to_csv()
@@ -215,7 +192,7 @@ void college_class::save_students_vector_to_csv()
 
     for (student s : students)
     {
-        out << s.get_name() << "," << s.get_usfid() << "," << s.get_email() << "," << s.get_presentation_grade() << "," << s.get_essay_grade() << "," << s.get_term_proj_grade() << endl;
+        out << s.get_name() << "," << s.get_usfid() << "," << s.get_email() << "," << s.get_presentation_grade() << "," << s.get_essay_grade() << "," << s.get_term_proj_grade();
     }
 
     out.close();
@@ -223,8 +200,13 @@ void college_class::save_students_vector_to_csv()
 
 void college_class::add_new_student()
 {
-    students.push_back(get_new_student_from_user());
+    student stu = get_new_student_from_user();
+    students.push_back(stu);
     save_students_vector_to_csv();
+
+    cout << endl
+         << "Successfully added student to the class." << endl
+         << endl;
 }
 
 void college_class::remove_student()

@@ -2,7 +2,7 @@
 
 # A class roll system implemented in C++, created for CEN 4072 Software Testing Course.
 
-*** Created by Oleg Tielushko, Igor Amidzic, Yakira Quemba, John Dew, Thinh Phung ***
+***Created by Oleg Tielushko, Igor Amidzic, Yakira Quemba, John Dew, Thinh Phung***
 
 ## Design and implementation of a small class-roll maintenance system. 
 

@@ -168,20 +168,20 @@ student college_class::search_student()
          << "1. Search by name." << endl
          << "2. Search by USF ID." << endl
          << "3. Search by email." << endl;
-    cin.clear();
+    //cin.clear();
     cin >> search_option;
 
     switch (search_option)
     {
     case 1:
-        stud = search_option_name();
-        break;
-    case 2:
         stud = search_option_ID();
         break;
-    case 3:
+    case 2:
         stud = search_option_email();
         break;
+    case 3:
+        stud = search_option_name();
+        break;        
     }
 
     if (stud.get_name() != "")
@@ -197,8 +197,9 @@ student college_class::search_option_name()
     string student_name;
     cout << endl
          << "Enter the student's name: ";
-    cin.ignore();
-    getline(cin, student_name);
+    cin >> student_name; // will mess up when user enters space for the name. Only picks up one word.
+    //cin.ignore(); //missing the cin to gather input from the user.
+    //getline(cin, student_name);
 
     for (student s : students)
         if (s.get_name() == student_name)
@@ -217,11 +218,12 @@ student college_class::search_option_ID()
     string student_ID;
     cout << endl
          << "Enter the student's USF ID: ";
-    cin.ignore();
-    getline(cin, student_ID);
+    cin >> student_ID;
+    //cin.ignore(); //bug seeded
+    //getline(cin, student_ID);  //bug seeded to mess up input.
 
     for (student s : students)
-        if (s.get_usfid() == student_ID)
+        if (s.get_usfid() != student_ID) //seeded bug to find the wrong record.
             return s;
 
     cout << endl
@@ -242,7 +244,7 @@ student college_class::search_option_email()
 
     for (student s : students)
         if (s.get_email() == student_email)
-            return s;
+            return student("", "", "", 0, 0, 0); //returns empty student element instead of the one found.
 
     cout << endl
          << "Unable to find " + student_email << endl;
@@ -265,17 +267,20 @@ student college_class::get_new_student_from_user()
     // Get student's name
     cout << "Name: ";
     string studentName;
-    getline(cin, studentName);
+    cin >> studentName;
+    //getline(cin, studentName); bug - won't read full name with space
 
     // Get student's ID
     cout << "USF ID: ";
     string studentId;
-    getline(cin, studentId);
+    cin >> studentId;
+    //getline(cin, studentId);  bug - won't read full name with space
 
     // Get student's Email
     cout << "Email: ";
     string studentEmail;
-    getline(cin, studentEmail);
+    cin  >> studentEmail;
+    //getline(cin, studentEmail); bug - won't read full name with space
 
     /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         Potential to introduce bug by not converting string to float
@@ -334,10 +339,12 @@ void college_class::save_students_vector_to_csv()
 
     for (student s : students)
     {
-        out << s.get_name() << "," << s.get_usfid() << "," << s.get_email() << "," << s.get_presentation_grade() << "," << s.get_essay_grade() << "," << s.get_term_proj_grade() << endl;
+        //bug with adding commas with spaces
+        out << s.get_name() << " ," << s.get_usfid() << " ," << s.get_email() << " ," << s.get_presentation_grade() << " ," << s.get_essay_grade() << " ," << s.get_term_proj_grade() << endl;
     }
 
-    out.close();
+    //hohoho bug to not close the fileeee hehehe
+    //out.close();
 }
 
 void college_class::add_new_student()
@@ -606,13 +613,14 @@ int main() {
         h::print_menu();
         
         //input validation for the selection string
-        while (!(cin >> selection)) {
+        /*while (!(cin >> selection)) {
             cin.clear();
             cin.ignore(1000, '\n');
             cout << endl << "Bad data entered. Try again." << endl;
             h::print_menu();
-        }
+        }*/ //no input valudation will create more bugs
        
+        cin >> selection;
         
         //switch statement to run the necessary functions on the student class.
         switch (selection) {
@@ -654,10 +662,14 @@ int main() {
                 return 0;
                 break;
             default:
-                cout << endl << endl << "Incorrect selection. Please choose a valid selection 1-5." << endl << endl;
-                continue;
+                //silly bug for while loop
+                while(true) { 
+                cout << endl << endl << "Incorrect selection. Please choose a valid selection 1-6." << endl << endl;
+                //continue; will just continually loop instead of
+                }
                 break;
-        }
+            
+            }
     }
     return 0;
 }

@@ -197,9 +197,7 @@ student college_class::search_option_name()
     string student_name;
     cout << endl
          << "Enter the student's name: ";
-    cin >> student_name; // will mess up when user enters space for the name. Only picks up one word.
-    //cin.ignore(); //missing the cin to gather input from the user.
-    //getline(cin, student_name);
+    cin >> student_name; 
 
     for (student s : students)
         if (s.get_name() == student_name)
@@ -207,8 +205,6 @@ student college_class::search_option_name()
 
     cout << endl
          << "Unable to find " + student_name << endl;
-    //since the student was not found, I am returning a blank record of a student. Please be careful and create check in the future,
-    //accounting for the writing into csv file and all.
     return student("", "", "", 0, 0, 0);
 }
 
@@ -219,17 +215,14 @@ student college_class::search_option_ID()
     cout << endl
          << "Enter the student's USF ID: ";
     cin >> student_ID;
-    //cin.ignore(); //bug seeded
-    //getline(cin, student_ID);  //bug seeded to mess up input.
 
     for (student s : students)
-        if (s.get_usfid() != student_ID) //seeded bug to find the wrong record.
+        if (s.get_usfid() != student_ID)
             return s;
 
     cout << endl
          << "Unable to find " + student_ID << endl;
-    //since the student was not found, I am returning a blank record of a student. Please be careful and create check in the future,
-    //accounting for the writing into csv file and all.
+    
     return student("", "", "", 0, 0, 0);
 }
 
@@ -248,8 +241,7 @@ student college_class::search_option_email()
 
     cout << endl
          << "Unable to find " + student_email << endl;
-    //since the student was not found, I am returning a blank record of a student. Please be careful and create check in the future,
-    //accounting for the writing into csv file and all.
+    
     return student("", "", "", 0, 0, 0);
 }
 
@@ -590,14 +582,6 @@ int main() {
         //ask the user to select the function to run
         //menu to display first.
         h::print_menu();
-        
-        //input validation for the selection string
-        /*while (!(cin >> selection)) {
-            cin.clear();
-            cin.ignore(1000, '\n');
-            cout << endl << "Bad data entered. Try again." << endl;
-            h::print_menu();
-        }*/ //no input valudation will create more bugs
        
         cin >> selection;
         
@@ -641,10 +625,8 @@ int main() {
                 return 0;
                 break;
             default:
-                //silly bug for while loop
                 while(true) { 
                 cout << endl << endl << "Incorrect selection. Please choose a valid selection 1-6." << endl << endl;
-                //continue; will just continually loop instead of
                 }
                 break;
             

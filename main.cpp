@@ -268,23 +268,16 @@ student college_class::get_new_student_from_user()
     cout << "Name: ";
     string studentName;
     cin >> studentName;
-    //getline(cin, studentName); bug - won't read full name with space
 
     // Get student's ID
     cout << "USF ID: ";
     string studentId;
     cin >> studentId;
-    //getline(cin, studentId);  bug - won't read full name with space
 
     // Get student's Email
     cout << "Email: ";
     string studentEmail;
     cin  >> studentEmail;
-    //getline(cin, studentEmail); bug - won't read full name with space
-
-    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        Potential to introduce bug by not converting string to float
-       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 
     float presGrade;
     float essayGrade;
@@ -307,29 +300,10 @@ student college_class::get_new_student_from_user()
         string studentProjectGrade;
         getline(cin, studentProjectGrade);
 
-        try
-        {
-            presGrade = stof(studentPresentationGrade);
-            essayGrade = stof(studentEssayGrade);
-            projectGrade = stof(studentProjectGrade);
-        }
-        catch (exception e)
-        {
-            cout << endl
-                 << "You've entered an invalid value for grades. Enter (0.0 - 100.0)" << endl
-                 << endl;
-            continue;
-        }
-
         break;
     }
 
     student stu = student(studentName, studentId, studentEmail, presGrade, essayGrade, projectGrade);
-
-    cout << endl
-         << "Successfully added student to the class." << endl
-         << endl;
-    return stu;
 }
 
 void college_class::save_students_vector_to_csv()
@@ -340,7 +314,7 @@ void college_class::save_students_vector_to_csv()
     for (student s : students)
     {
         //bug with adding commas with spaces
-        out << s.get_name() << " ," << s.get_usfid() << " ," << s.get_email() << " ," << s.get_presentation_grade() << " ," << s.get_essay_grade() << " ," << s.get_term_proj_grade() << endl;
+        out << s.get_name() << "," << s.get_usfid() << "," << s.get_email() << "," << s.get_presentation_grade() << "," << s.get_essay_grade() << "," << s.get_term_proj_grade();
     }
 
     //hohoho bug to not close the fileeee hehehe
@@ -349,8 +323,13 @@ void college_class::save_students_vector_to_csv()
 
 void college_class::add_new_student()
 {
-    students.push_back(get_new_student_from_user());
+    student stu = get_new_student_from_user();
+    students.push_back(stu);
     save_students_vector_to_csv();
+
+    cout << endl
+         << "Successfully added student to the class." << endl
+         << endl;
 }
 
 void college_class::remove_student()
@@ -358,10 +337,10 @@ void college_class::remove_student()
     student stu = search_option_ID();
 
     if (stu.get_name() == "")
-        return false;
+        return;
 
     cout << stu.get_name() << endl;
-    for (int i = 0; i < students.size() + i ; i++)
+    for (int i = 0; i < students.size(); i++)
         if (students[i].get_usfid() == stu.get_usfid())
         {
             students.erase(students.begin() + i);
@@ -369,7 +348,7 @@ void college_class::remove_student()
                  << "The student has been successfully removed from the course." << endl
                  << endl;
             save_students_vector_to_csv();
-            return true;
+            return;
         }
 }
 
@@ -472,7 +451,7 @@ void college_class::update_record()
                     break;
                 }
             }
-            for (student s : students)
+            for (student &s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {
@@ -500,7 +479,7 @@ void college_class::update_record()
                     break;
                 }
             }
-            for (student s : students)
+            for (student &s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {
@@ -528,7 +507,7 @@ void college_class::update_record()
                     break;
                 }
             }
-            for (student s : students)
+            for (student &s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {
@@ -557,7 +536,7 @@ void college_class::update_record()
                 }
             }
 
-            for (student s : students)
+            for (student &s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {

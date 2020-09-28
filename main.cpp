@@ -472,7 +472,7 @@ void college_class::update_record()
                     break;
                 }
             }
-            for (student &s : students)
+            for (student s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {
@@ -500,7 +500,7 @@ void college_class::update_record()
                     break;
                 }
             }
-            for (student &s : students)
+            for (student s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {
@@ -528,7 +528,7 @@ void college_class::update_record()
                     break;
                 }
             }
-            for (student &s : students)
+            for (student s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {
@@ -557,7 +557,7 @@ void college_class::update_record()
                 }
             }
 
-            for (student &s : students)
+            for (student s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {

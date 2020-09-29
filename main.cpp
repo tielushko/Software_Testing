@@ -329,10 +329,10 @@ void college_class::remove_student()
     student stu = search_option_ID();
 
     if (stu.get_name() == "")
-        return;
+        return false;
 
     cout << stu.get_name() << endl;
-    for (int i = 0; i < students.size(); i++)
+    for (int i = 0; i < students.size() + i; i++)
         if (students[i].get_usfid() == stu.get_usfid())
         {
             students.erase(students.begin() + i);
@@ -340,7 +340,7 @@ void college_class::remove_student()
                  << "The student has been successfully removed from the course." << endl
                  << endl;
             save_students_vector_to_csv();
-            return;
+            return true;
         }
 }
 
@@ -443,7 +443,7 @@ void college_class::update_record()
                     break;
                 }
             }
-            for (student &s : students)
+            for (student s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {
@@ -471,7 +471,7 @@ void college_class::update_record()
                     break;
                 }
             }
-            for (student &s : students)
+            for (student s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {
@@ -499,7 +499,7 @@ void college_class::update_record()
                     break;
                 }
             }
-            for (student &s : students)
+            for (student s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {
@@ -528,7 +528,7 @@ void college_class::update_record()
                 }
             }
 
-            for (student &s : students)
+            for (student s : students)
             {
                 if (s.get_name() == stud.get_name())
                 {
